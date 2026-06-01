@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Greetings, Friend</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="header">
+      <div>
+        <h2><a href="index.html">Greetings, Friend</a></h2>
+        <img class="header-logo" src="assets/card-logo.svg" alt="stack of cards logo">
+      </div>
+    </header>
+
+    <div class="card-viewer">
+      <p class="card-viewer-sub">You got mail!</p>
+      <img id="card-viewer-img" alt="Your greeting card" class="card-viewer-img" />
+      <p id="card-viewer-error" style="display:none">Card not found or has expired.</p>
+      <a class="button" href="index.html">Send one back</a>
+    </div>
+
+    <script>
+      const API_BASE = "";
+      const id = new URLSearchParams(window.location.search).get("id");
+
+      if (id) {
+        fetch(`${API_BASE}/cards/${id}`)
+          .then(r => r.json())
+          .then(data => {
+            if (data.r2Url) {
+              document.getElementById("card-viewer-img").src = data.r2Url;
+            } else {
+              document.getElementById("card-viewer-error").style.display = "";
+            }
+          })
+          .catch(() => {
+            document.getElementById("card-viewer-error").style.display = "";
+          });
+      } else {
+        document.getElementById("card-viewer-error").style.display = "";
+      }
+    </script>
+  </body>
+</html>

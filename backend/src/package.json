@@ -1,0 +1,36 @@
+{
+  "name": "greeting_card",
+  "version": "1.0.0",
+  "description": "public repo for greeting card website",
+  "homepage": "https://github.com/M0n1rah/greeting_card#readme",
+  "bugs": {
+    "url": "https://github.com/M0n1rah/greeting_card/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M0n1rah/greeting_card.git"
+  },
+  "license": "ISC",
+  "author": "Monirah",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node backend/src/index.js",
+    "dev": "nodemon backend/src/index.js",
+    "build": "npm install"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.3.0",
+    "nodemon": "^3.1.14",
+    "nodemailer": "^8.0.7",
+    "resend": "^6.12.3",
+    "@aws-sdk/client-s3": "^3.1057.0",
+    "uuid": "^14.0.0",
+    "@getbrevo/brevo": "^5.0.4"
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  	<meta charset="utf-8">
+  	<meta name="description" content="Send someone a hello and make their day.">
+  	<meta name="keywords" content="greeting card, birthday, holiday, celebration">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<title>Greetings Friend</title>
+
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body>
+        <header class="header">
+            <div>
+                <h2>Greetings, Friend</h2>
+                <img class="header-logo" src="assets/card-logo.svg" alt="stack of cards logo">
+            </div>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><button class="nav-auth-btn" data-auth="login">Log In</button></li>
+                    <li><button class="nav-auth-btn" data-auth="signup">Sign Up</button></li>
+                </ul>
+
+                <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </header>
+
+        <div class="mobile-menu" id="mobileMenu" role="navigation">
+                <a href="index.html">Home</a>
+                <button class="mobile-auth-btn" data-auth="login">Log In</button>
+                <button class="mobile-auth-btn" data-auth="signup">Sign Up</button>
+        </div>
+
+        <div class="home-hero">
+            <h1>Send someone a hello to make their day.</h1>
+            <p>Pick a card, write your message, and share it with someone special.</p>
+        </div>
+
+        <div class="card-grid" id="card-grid"></div>
+
+        <!-- Auth Drawer -->
+        <div class="auth-overlay" id="auth-overlay"></div>
+        <div class="auth-drawer" id="auth-drawer" role="dialog" aria-modal="true" aria-label="Log in or create account">
+            <button class="auth-drawer-close" id="auth-close" aria-label="Close">&#x2715;</button>
+ 
+            <div class="auth-drawer-inner">
+                <div class="auth-tabs">
+                    <button class="auth-tab" id="tab-login" data-tab="login">Log In</button>
+                    <button class="auth-tab" id="tab-signup" data-tab="signup">Sign Up</button>
+                    <div class="auth-tab-indicator" id="auth-tab-indicator"></div>
+                </div>
+
+            <!--Log In Panel-->
+                <div class="auth-panel" id="panel-login">
+                    <p class="auth-error" id="login-error"></p>
+                    <form id="login-form" class="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="login-email">
+                                <img src="assets/email.svg" alt="email" height="20" width="20">
+                            </label>
+                            <input type="email" id="login-email" placeholder="example@email.com" autocomplete="email" required>
+                        </div>
+                        <div class="auth-field">
+                            <label for="login-password">
+                                <img src="assets/lock.svg" alt="password" height="20" width="20">
+                            </label>
+                            <input type="password" id="login-password" placeholder="password" autocomplete="current-password" required>
+                        </div>
+                        <p><button type="button" class="auth-switch-btn" id="forgot-password-link">Forgot your password?</button></p>
+                        <button class="button auth-submit" type="submit">Log In</button>
+                    </form>
+                </div>
+ 
+             <!--Sign Up Panel-->
+                <div class="auth-panel" id="panel-signup">
+                    <p class="auth-error" id="signup-error"></p>
+                    <form id="signup-form" class="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="signup-username">
+                                <img src="assets/person.svg" alt="name" height="20" width="20">
+                            </label>
+                            <input type="text" id="signup-username" placeholder="name" autocomplete="username" required>
+                        </div>
+                        <div class="auth-field">
+                            <label for="signup-email">
+                                <img src="assets/email.svg" alt="email" height="20" width="20">
+                            </label>
+                            <input type="email" id="signup-email" placeholder="example@email.com" autocomplete="email" required>
+                        </div>
+                        <div class="auth-field">
+                            <label for="signup-password">
+                                <img src="assets/lock.svg" alt="password" height="20" width="20">
+                            </label>
+                            <input type="password" id="signup-password" placeholder="password" autocomplete="new-password" required>
+                        </div>
+                        <div class="auth-field">
+                            <label for="signup-password2">
+                                <img src="assets/lock.svg" alt="password" height="20" width="20">
+                            </label>
+                            <input type="password" id="signup-password2" placeholder="re-enter password" autocomplete="new-password" required>
+                        </div>
+                        <button class="button auth-submit" type="submit">Sign Up</button>
+                    </form>
+                </div>
+
+                <!--Forgot Password Panel-->
+                <div class="auth-panel" id="panel-forgot-password">
+                    <button type="button" class="auth-back-btn" id="back-to-login">
+                        <img src="assets/back-arrow.svg" alt="save" height="10" width="10">
+                        Back to Log In
+                    </button>
+                    <p class="auth-panel-heading">Reset your password</p>
+                    <p class="auth-panel-sub">Enter your email to receive a 6-digit code.</p>
+                    <p class="auth-error" id="forgot-error"></p>
+                    <form id="forgot-password-form" class="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="forgot-email">
+                                <img src="assets/email.svg" alt="email" height="20" width="20">
+                            </label>
+                            <input type="email" id="forgot-email" placeholder="example@email.com" autocomplete="email" required>
+                        </div>
+                        <button class="button auth-submit" type="submit">Send Code</button>
+                    </form>
+                </div>
+ 
+                <!--OTP Panel-->
+                <div class="auth-panel" id="panel-otp">
+                    <button type="button" class="auth-back-btn" id="back-to-forgot">&#8592; Back</button>
+                    <p class="auth-panel-heading">Check your email</p>
+                    <p class="auth-panel-sub" id="otp-sub">Please check your email for the 6-digit code.</p>
+                    <p class="auth-error" id="otp-error"></p>
+                    <form id="otp-form" class="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="otp-input">
+                                <img src="assets/lock.svg" alt="code" height="20" width="20">
+                            </label>
+                            <input type="text" id="otp-input" placeholder="6-digit code" maxlength="6" inputmode="numeric" autocomplete="one-time-code" required>
+                        </div>
+                        <button class="button auth-submit" type="submit">Verify Code</button>
+                    </form>
+                </div>
+ 
+                <!--Reset Password Panel-->
+                <div class="auth-panel" id="panel-reset-password">
+                    <p class="auth-panel-heading">Choose a new password</p>
+                    <p class="auth-error" id="reset-error"></p>
+                    <form id="reset-password-form" class="auth-form" novalidate>
+                        <div class="auth-field">
+                            <label for="reset-new-password">
+                                <img src="assets/lock.svg" alt="password" height="20" width="20">
+                            </label>
+                            <input type="password" id="reset-new-password" placeholder="new password" autocomplete="new-password" required>
+                        </div>
+                        <div class="auth-field">
+                            <label for="reset-new-password2">
+                                <img src="assets/lock.svg" alt="password" height="20" width="20">
+                            </label>
+                            <input type="password" id="reset-new-password2" placeholder="re-enter new password" autocomplete="new-password" required>
+                        </div>
+                        <button class="button auth-submit" type="submit">Reset Password</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+ 
+        <div class="toast" id="toast"></div>
+
+		<script type="text/javascript" src="main.js"></script>
+	</body>
+</html>
